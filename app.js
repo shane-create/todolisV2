@@ -14,6 +14,8 @@ app.use(express.static("public"));
 
 mongoose.connect("mongodb://localhost:27017/todolistDB", { useNewUrlParser: true, useUnifiedTopology: true })
 
+mongoose.set('useFindAndModify', false);
+
 const itemsSchema = new mongoose.Schema ({
   name: String
 });
@@ -49,8 +51,6 @@ app.get("/", function(req, res) {
         Item.insertMany(defaultItems, function(err){
           if (err) {
             console.log(err);
-          } else {
-            console.log("There were no problems found!");
           }
         });
         res.redirect("/")
@@ -113,7 +113,6 @@ app.post("/delete", function(req, res){
   if(listName === "Today"){
     Item.findByIdAndRemove(checkedItemId, function(err){
       if (!err){
-        console.log("sucessfully deleted");
         res.redirect("/");
       }
     });
