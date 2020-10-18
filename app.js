@@ -12,7 +12,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://localhost:27017/todolistDB", { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect("mongodb+srv://shai_0136:jdu54gbv@todolistcluster.kvogh.mongodb.net/todolistDB", { useNewUrlParser: true, useUnifiedTopology: true })
 
 mongoose.set('useFindAndModify', false);
 
